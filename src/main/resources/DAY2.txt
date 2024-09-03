@@ -65,12 +65,49 @@
   8. @Primary     주입해야 할 빈이 1개 이상이라면 @Primary 를 이용하여 우선순위를 정해준다. 
 
 
-
-  9. @Qualifier  :  빈의 이름을 지정하여 특정한 이름의 객체를 주입받는 방식 
-
+  9. @Qualifier  :  빈의 이름을 지정하여 특정한 이름의 객체를 주입받는 방식
 
 
+10 . 스프링 빈(Bean)으로 등록되는 객체들은 "핵심배역"을 담당하는 객체이다.
+     핵심배역 :  오랜시간동안 프로그램내에서 상주하면서 중요한 역할  (비지니스 로직을 처리)
+     VO, DTO 는 빈을 등록을 할까요? 아니다.
+      - 데이터에 중심을 두고 설계된 객체이기 때문에 , 특히 DTO 는 생명주기가 짧고 , 데이터 보관이 주요 역할이므로 빈으로 처리하지 않는다.
 
+
+     - XML, 어노테이션으로 처리하는 객체의 구분 기준은 무엇인가?
+       판단 기준 : 코드를 수정할 수 있는가?
+       예) jar 파일로 추가되는 클래스의 객체를 스프링의 빈으로 처리해야 하는 경우 => XML 의 <bean> 처리하고
+           직접 작성하는 클래스는 어노테이션을 사용하는 것을 권장한다.
+
+
+11. ApplicationContext 가 웹 어플리케이션에서 동작하려면
+
+    웹 애플리케이션이 실행될 때, 스프링을 로딩해서 해당 웹 어플리케이션 내부에 스프링의 ApplicationContext를 생성하는 작업이 필요하다.
+
+12. 스프링프레임워크는 웹과 관련된 작업은 "spring-webmvc" 라이브러리가 담당하므로 build.gradle 에 해당 라이브러리 추가
+
+
+13. WEB-INF/ 폴더 아래에 web.xml (웹 어플리케이션의 배치관리자 DeployDescriptor)   <listener>설정과 listener에 필요한 <context-param> 추가
+
+
+14. DataSoucre 구성하기
+   톰캣과 스프링이 연동되는 구조를 완성한 후
+   웹 애플리케이션의 필수 기능인 데이터베이스 관련 설정을 해야한다.
+
+
+15. HikariCP 설정을 하여 Connection Pool 이용하기
+    프로젝트에서 Connection 생성은 Connection Pool  HikariCP  라이브러리 사용
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
+
+
+    설정 방법
+    1. HikariConfig 타입의 객체 생성
+       Connection Pool 설정을 위한 정보를 저장하는 환경셋팅 객체
+
+    2. HikariConfig 객체를 이용하여 HikariDataSource 객체 생성
+       - getConnection()를 이용하여 DB로부터 Connection을 받아와 사용할 수 있게 된다.
+
+    3. ConnectionTests를 통해 테스트 진행
 
 
 
