@@ -41,7 +41,7 @@ dependencies {
   implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
 
 
-
+  //테스트 환경에서 @Log4j2 기능을 활용시 필요한 라이브러리
   testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
@@ -51,6 +51,10 @@ dependencies {
   implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.22.1'
 
   implementation 'jstl:jstl:1.2'
+
+
+  implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
+
 }
 
 test {
