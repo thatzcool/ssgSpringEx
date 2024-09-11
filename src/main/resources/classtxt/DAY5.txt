@@ -91,7 +91,19 @@
 
 
 
+10 . 톰캣과 스프링이 연동되는 구조를 완성한 후 웹 어플리케이션에서 필수인 데이터베이스 설정
+     1. build.gradle  :    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+                          // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+                          implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
 
+     2. root-context.xml 에 HikariCP
+        - HikariConfig 설정
+        - HikariDataSource 초기화
+
+
+
+11. MyBatis
+    'Sql Mapping Framework' : SQL의 실행 결과를 객체지향으로 매핑 해 준다.
 
 
 
